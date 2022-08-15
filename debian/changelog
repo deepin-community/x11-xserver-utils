@@ -1,0 +1,5 @@
+x11-xserver-utils (7.7+9-deepin) stable; urgency=medium
+
+  * ['Rebuild  against by  current gcc 11.2']
+
+ -- Deepin Packages Builder <packages@deepin.org>  Wed, 10 Aug 2022 21:31:52 +0800
