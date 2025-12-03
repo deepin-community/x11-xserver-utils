@@ -1,23 +1,22 @@
 Source: x11-xserver-utils
 Section: x11
 Priority: optional
-Maintainer: Deepin Developer <deepin-dev@deepin.org>
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
 Build-Depends:
- debhelper-compat (= 12),
- pkg-config,
- x11proto-core-dev (>= 7.0.25),
- libx11-dev (>= 2:1.0.0),
- libxaw7-dev (>= 1:1.0.1),
- libxext-dev (>= 1:1.0.0),
- libxi-dev (>= 1:1.0.0-3),
- libxmuu-dev (>= 1:1.0.1),
- libxrandr-dev (>= 2:1.4.0),
- libxt-dev (>= 1:1.0.0),
- libxxf86vm-dev (>= 1:1.0.0),
+ debhelper-compat (= 13),
+ pkgconf,
+ libx11-dev,
+ libxaw7-dev,
+ libxext-dev,
+ libxi-dev,
+ libxmuu-dev,
+ libxrandr-dev,
+ libxt-dev,
+ libxxf86vm-dev,
  xbitmaps,
  quilt,
- x11proto-input-dev (>= 1.4),
- xutils-dev (>= 1:7.5+4),
+ x11proto-dev,
+ xutils-dev,
  libxcursor-dev,
 # Reasons for build-depends:
 # debhelper for the packaging, pkg-config needed by configure scripts
@@ -37,20 +36,14 @@ Build-Depends:
 # xsetroot: libxmuu-dev, libx11-dev, xbitmaps, libxcursor-dev
 # xstdcmap: libxmu-dev, libx11-dev
 # xvidtune: libxaw7-dev, libxxf86vm-dev, libxt-dev
-Standards-Version: 4.5.0
-#Vcs-Git
-#Vcs-Browser
+Standards-Version: 4.6.2
+Vcs-Git: https://salsa.debian.org/xorg-team/app/x11-xserver-utils
+Vcs-Browser: https://salsa.debian.org/xorg-team/app/x11-xserver-utils
 
 Package: x11-xserver-utils
 Architecture: any
+Multi-Arch: foreign
 Depends: ${shlibs:Depends}, ${misc:Depends}, cpp
-Conflicts: iceauth, sessreg, xgamma, xhost, xmodmap, xrandr, xrdb, xrefresh, xrgb, xset,
- xsetmode, xsetpointer, xsetroot, xstdcmap, xvidtune
-Replaces: xbase-clients (<< 1:7.3), xutils (<< 1:7.2),
- iceauth, sessreg, xgamma, xhost, xmodmap, xrandr, xrdb, xrefresh, xrgb, xset,
- xsetmode, xsetpointer, xsetroot, xstdcmap, xvidtune
-Breaks:
- arandr (<< 0.1.9),
 Suggests: nickle, cairo-5c, xorg-docs-core
 Description: X server utilities
  An X client is a program that interfaces with an X server (almost always via
