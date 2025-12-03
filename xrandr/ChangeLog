@@ -1,3 +1,148 @@
+commit 0591ca56f9628d1a1a691160d79d9afb0f225c4d
+Author: Matt Turner <mattst88@gmail.com>
+Date:   Thu Nov 7 13:02:28 2024 -0500
+
+    xrandr 1.5.3
+    
+    Part-of: <https://gitlab.freedesktop.org/xorg/app/xrandr/-/merge_requests/14>
+
+commit 9362e430f59b9fb47129122fa3a5db687819d74d
+Author: Justin Mayfield <tooker@gmail.com>
+Date:   Mon Aug 7 15:34:11 2023 -0600
+
+    Reworked transform fix from Arsalan Awan
+    
+    Check that the transform for a display is unmodified before allowing it
+    to be skipped during an update.
+    
+    This is a reworked patch from Arsalan Awan's 2017 post:
+        https://lists.x.org/archives/xorg-devel/2017-December/055482.html
+    
+    Fixes #36
+    
+    Part-of: <https://gitlab.freedesktop.org/xorg/app/xrandr/-/merge_requests/11>
+
+commit b05887508dcf65a58204fb69763e1a7846d2e857
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Tue Apr 11 12:31:06 2023 +0300
+
+    xrandr: Print/consume the CTM prop in human readable form
+    
+    Print/consume the CTM in floats for easier human consumption.
+    
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Part-of: <https://gitlab.freedesktop.org/xorg/app/xrandr/-/merge_requests/10>
+
+commit 71ab94418ead8f59c6124e8b3e53f8df7340f095
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Mon Sep 18 14:06:41 2023 -0700
+
+    set_gamma_info: remove unnecessary round-trip to server
+    
+    XRRGetCrtcGamma() returns the exact same size information as
+    XRRGetCrtcGammaSize(), so just use it instead of waiting for
+    the X server to send it an extra time.
+    
+    (And if something has gone very wrong so that they aren't the same,
+     this avoids out-of-bounds reads processing the returned gamma arrays
+     by using the size of the arrays we allocated.)
+    
+    Reported-by: Gregory James DUCK <gjduck@gmail.com>
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 6f714830da6c8d74f024be6b0bb32c1ea39c1217
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Sat Dec 3 15:47:06 2022 -0800
+
+    xrandr 1.5.2
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 213e10f1996b08305df55c237c90152227e0c5f7
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Fri Oct 28 18:29:04 2022 -0700
+
+    Constify array argument to find_last_non_clamped()
+    
+    Suggested by cppcheck:
+    
+    xrandr.c:1046:30: style: Parameter 'array' can be declared with const [constParameter]
+    find_last_non_clamped(CARD16 array[], int size)
+                                 ^
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit fc331d39447412320e856f56bab88613264cd8f5
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Fri Oct 28 18:25:19 2022 -0700
+
+    Remove unused definition of rectangle_t
+    
+    Was added in commit 854a7c2916455fec5e but never used.
+    Reported by cppcheck unusedStructMember warning.
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit e8c4a2727196c8f9bf76df30c5c0a8671e0e5dfe
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Fri Oct 28 18:22:11 2022 -0700
+
+    Remove unused macros left over from original RandR 1.2 code
+    
+    Use of these was removed in commit cb017692883daf64 in 2006.
+    Reported by clang -Wunused-macros
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 3613fea4472741d8423c38a82e5569739d53bbb7
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Fri Oct 28 18:09:58 2022 -0700
+
+    Fix a -Wsign-compare warning
+    
+    xrandr.c: In function ‘main’:
+    xrandr.c:2780:24: warning: comparison between signed and unsigned integer
+      expressions [-Wsign-compare]
+          for (int t = 0; t < sizeof(filter_names) / sizeof(filter_names[0]); t++)
+                            ^
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 289722fc8f2c9916a9631c7e4c796269b99b98f8
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Fri Oct 28 18:07:20 2022 -0700
+
+    Variable scope reductions as suggested by cppcheck
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 8231beec67ee274d10b5d4c5b910d673dc6d1cc8
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Thu Jul 28 17:30:21 2022 -0700
+
+    gitlab CI: stop requiring Signed-off-by in commits
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 2fb90d4d626dcc0432f96da3fa438724d637bdd3
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Sun Jan 9 12:38:26 2022 -0800
+
+    Fix spelling/wording issues
+    
+    Found by using:
+        codespell --builtin clear,rare,usage,informal,code,names
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 296effc3ac7b2f095e889488d82e9d1a4fffd824
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Tue Dec 7 13:34:30 2021 -0800
+
+    gitlab CI: add a basic build test
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
 commit 824484e5ba50f1e6858ea990393c181a249c3a5e
 Author: Matt Turner <mattst88@gmail.com>
 Date:   Mon Aug 12 10:42:41 2019 -0700
